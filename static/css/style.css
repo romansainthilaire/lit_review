@@ -1,0 +1,17 @@
+#main-container {
+    min-height: calc(100vh - 75px);
+}
+
+footer {
+    height: 75px;
+}
+
+#logo {
+    max-width: 80px;
+}
+
+.nav-link:hover {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}

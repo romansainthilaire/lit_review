@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>{% block title %}{% endblock title %}</title>
 
     <!-- Bootstrap CSS -->
@@ -30,8 +30,42 @@
 
 <body>
 
-    {% block content %}
-    {% endblock content %}
-    
+    <div id="main-container">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand me-5" href="">
+                    <img id="logo" src="{% static 'img/logo.png' %}" alt="logo">
+                    LITReview
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li>
+                            <a class="nav-link me-2" href="#">Flux</a>
+                        </li>
+                        <li>
+                            <a class="nav-link me-2" href="#">Posts</a>
+                        </li>
+                        <li>
+                            <a class="nav-link me-2" href="#">Abonnements</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-secondary me-3">Déconnexion</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container mt-5">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+
+    <footer class="bg-dark">
+        <p class="text-white text-center pt-4">&copy; <span>{% now "Y" %}</span> LITReview</p>
+    </footer>
+
 </body>
+
 </html>
