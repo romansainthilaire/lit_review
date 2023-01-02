@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_cleanup.apps.CleanupConfig",
+    "bootstrap5",
     "accounts",
     "reviews"
 ]
@@ -81,6 +83,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# Authentication
+
+LOGIN_URL = ""
 
 
 # Password validation
