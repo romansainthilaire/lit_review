@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from reviews.models import UserFollows
+from reviews.models import Subscription
 
 
-admin.site.register(UserFollows)
+admin.site.register(Subscription)
