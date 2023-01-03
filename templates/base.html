@@ -42,11 +42,11 @@
                     <img id="logo" src="{% static 'img/logo.png' %}" alt="logo">
                     LITReview
                 </a>
+                {% if user.is_authenticated %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar">
-                    {% if user.is_authenticated %}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li>
                             <a class="nav-link me-2" href="{% url 'feed' %}">Flux</a>
@@ -60,8 +60,8 @@
                     </ul>
                     <p class="text-white mt-3 me-4">Connecté : {{ user.username }}</p>
                     <a class="btn btn-secondary me-3 my-2" href="{% url 'logout' %}">Déconnexion</a>
-                    {% endif %}
                 </div>
+                {% endif %}
             </div>
         </nav>
         <div class="container mt-5">
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <footer class="bg-dark">
+    <footer class="bg-dark mt-5">
         <p class="text-white text-center pt-4">&copy; <span>{% now "Y" %}</span> LITReview</p>
     </footer>
 

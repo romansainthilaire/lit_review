@@ -4,14 +4,38 @@ from django.db import IntegrityError
 from django.http import Http404
 
 from accounts.models import User
-from reviews.models import Subscription
+from reviews.models import Ticket, Subscription
 
-from reviews.forms import SubscriptionForm
+from reviews.forms import CreateTicketForm, SubscriptionForm
 
 
 @login_required
 def feed(request):
-    return render(request, "reviews/feed.html")
+    followed_users = []
+    for subscription in Subscription.objects.filter(user=request.user):
+        followed_users.append(subscription.followed_user)
+    tickets = []
+    for ticket in Ticket.objects.all().order_by("-time_created"):
+        if ticket.user in followed_users or ticket.user == request.user:
+            tickets.append(ticket)
+    context = {"tickets": tickets}
+    return render(request, "reviews/feed.html", context)
+
+
+@login_required
+def create_ticket(request):
+    form = CreateTicketForm()
+    if request.method == "POST":
+        form = CreateTicketForm(request.POST, request.FILES)
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.user = request.user
+            if "image" in request.FILES:
+                ticket.image = request.FILES["image"]
+            ticket.save()
+            return redirect("feed")
+    context = {"form": form}
+    return render(request, "reviews/create_ticket_form.html", context)
 
 
 @login_required
