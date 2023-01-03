@@ -10,7 +10,7 @@
     <div class="col-lg-6 col-xl-8">
         <h3 class="text-center text-white">Inscrivez-vous maintenant</h3>
         <p class="text-center mt-4">
-            <a class="btn btn-secondary mt-2" href="">S'inscrire</a>
+            <a class="btn btn-secondary mt-2" href="{% url 'registration' %}">S'inscrire</a>
         </p>
         <figure class="d-none d-lg-block">
             <blockquote class="blockquote fs-5" id="quote">
@@ -36,9 +36,7 @@
             {% csrf_token %}
             {% bootstrap_form form bound_css_class="" %}
             <div class="text-center text-lg-end">
-                {% buttons %}
                 <button class="btn btn-secondary mt-4 mb-5" type="submit">Connexion</button>
-                {% endbuttons %}
             </div>
         </form>
     </div>

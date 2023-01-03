@@ -46,6 +46,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar">
+                    {% if user.is_authenticated %}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li>
                             <a class="nav-link me-2" href="#">Flux</a>
@@ -57,7 +58,9 @@
                             <a class="nav-link me-2" href="#">Abonnements</a>
                         </li>
                     </ul>
-                    <a class="btn btn-secondary me-3 my-2">Déconnexion</a>
+                    <p class="text-white mt-3 me-4">Connecté : {{ user.username }}</p>
+                    <a class="btn btn-secondary me-3 my-2" href="{% url 'logout' %}">Déconnexion</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
