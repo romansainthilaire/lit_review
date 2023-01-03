@@ -16,6 +16,7 @@ def log_in(request):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
+                return redirect("feed")
             else:
                 error_message = "Identifiants invalides."
                 context = {"form": form, "error_message": error_message}
@@ -36,7 +37,7 @@ def registration(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("login")
+            return redirect("feed")
         else:
             context["form"] = form
     return render(request, "accounts/registration_form.html", context)
