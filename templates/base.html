@@ -55,7 +55,7 @@
                             <a class="nav-link me-2" href="#">Posts</a>
                         </li>
                         <li>
-                            <a class="nav-link me-2" href="#">Abonnements</a>
+                            <a class="nav-link me-2" href="{% url 'user_follows' %}">Abonnements</a>
                         </li>
                     </ul>
                     <p class="text-white mt-3 me-4">Connecté : {{ user.username }}</p>
