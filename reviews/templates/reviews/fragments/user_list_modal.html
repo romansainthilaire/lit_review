@@ -1,0 +1,15 @@
+<div class="modal fade" id="user-list-modal">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-secondary">
+            <div class="modal-header">
+                <p class="h4 text-secondary text-white">Liste des utilisateurs</p>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center fw-bold mt-3">
+                {% for user in users %}
+                <p>{{ user.username }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,14 +17,15 @@ def feed(request):
 @login_required
 def subscriptions(request):
     form = SubscriptionForm()
-    context = {"form": form}
+    users = User.objects.all().order_by("username")
+    context = {"form": form, "users": users}
     if request.method == "POST":
         form = SubscriptionForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data["username"]
             if username == request.user.username:
                 error_message = "Vous ne pouvez pas vous abonner à vous même."
-                context = {"form": form, "error_message": error_message}
+                context = {"form": form, "users": users, "error_message": error_message}
             else:
                 try:
                     subscription = Subscription()
@@ -33,10 +34,10 @@ def subscriptions(request):
                     subscription.save()
                 except User.DoesNotExist:
                     error_message = "Cet utilisateur n'existe pas."
-                    context = {"form": form, "error_message": error_message}
+                    context = {"form": form, "users": users, "error_message": error_message}
                 except IntegrityError:
                     error_message = "Vous êtes déjà abonné à cet utilisateur."
-                    context = {"form": form, "error_message": error_message}
+                    context = {"form": form, "users": users, "error_message": error_message}
     return render(request, "reviews/subscriptions.html", context)
 
 

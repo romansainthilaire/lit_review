@@ -29,3 +29,13 @@ label, input {
     color: rgb(120, 120, 120);
     font-family: 'Caveat', cursive;
 }
+
+a {
+    color: rgb(195, 195, 195);
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: white;
+    text-underline-offset: 3px;
+}
