@@ -37,7 +37,7 @@ def subscriptions(request):
                 except IntegrityError:
                     error_message = "Vous êtes déjà abonné à cet utilisateur."
                     context = {"form": form, "error_message": error_message}
-    return render(request, "reviews/subscription.html", context)
+    return render(request, "reviews/subscriptions.html", context)
 
 
 @login_required
