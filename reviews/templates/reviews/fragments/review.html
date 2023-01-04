@@ -17,9 +17,9 @@
     <hr class="text-white my-4">
     <div class="d-flex justify-content-between text-secondary">
         {% if post.ticket.user == user %}
-        <small>Vous avez demandé une critique.</small>
+        <small>Ticket - Vous</small>
         {% else %}
-        <small>{{ post.ticket.user.username }} a demandé une critique.</small>
+        <small>Ticket - {{ post.ticket.user.username }}</small>
         {% endif %}
         <small class="ms-4">{{ post.ticket.time_created|date }} {{ post.ticket.time_created|time }}</small>
     </div>
