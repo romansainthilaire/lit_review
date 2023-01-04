@@ -1,0 +1,45 @@
+<div class="bg-dark rounded p-4 mb-4">
+    <div class="d-flex justify-content-between text-secondary">
+        {% if post.user == user %}
+        <small>Vous avez publié une critique.</small>
+        {% else %}
+        <small>{{ post.user.username }} a publié une critique.</small>
+        {% endif %}
+        <small class="ms-4">{{ post.ticket.time_created|date }} {{ post.ticket.time_created|time }}</small>
+    </div>
+    <h5 class="text-white mt-3">
+        {{ post.headline }} -
+        <span class="nobr">{% include "reviews/fragments/star_rating.html" %}</span>
+    </h5>
+    
+    <p class="text-white"><small>{{ post.body }}</small>
+    </p>
+    <hr class="text-white my-4">
+    <div class="d-flex justify-content-between text-secondary">
+        {% if post.ticket.user == user %}
+        <small>Vous avez demandé une critique.</small>
+        {% else %}
+        <small>{{ post.ticket.user.username }} a demandé une critique.</small>
+        {% endif %}
+        <small class="ms-4">{{ post.ticket.time_created|date }} {{ post.ticket.time_created|time }}</small>
+    </div>
+    <h5 class="text-white mt-3">{{ post.ticket.title }}</h5>
+    {% if post.ticket.description %}
+    <p class="text-white"><small>{{ post.ticket.description }}</small></p>
+    {% endif %}
+    {% if post.ticket.image %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-8 col-sm-5 col-lg-4">
+            <img class="img-fluid" src="{{ post.ticket.image.url }}" alt="">
+        </div>
+    </div>
+    {% endif %}
+    {% if user != post.ticket.user %}
+    {% for review in post.ticket.review_set.all %}
+    {% empty %}
+    <p class="text-end mt-4 mb-0">
+        <a class="btn btn-sm btn-secondary" href="{% url 'create_review' post.ticket.id %}">Créer une critique</a>
+    </p>
+    {% endfor %}
+    {% endif %}
+</div>

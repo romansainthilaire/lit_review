@@ -14,21 +14,16 @@ from reviews.forms import CreateTicketForm, CreateReviewForm, SubscriptionForm
 
 @login_required
 def feed(request):
-
-    followed_users = []
+    followed_users = [request.user]
     for subscription in Subscription.objects.filter(user=request.user):
         followed_users.append(subscription.followed_user)
-
-    reviews = Review.objects.all()  # get only reveiws if review.user in followed_user or if review.user == request.user
-    reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
-
-    tickets = Ticket.objects.all()  # get only tickets if ticket.user in followed_user or if ticket.user == request.user
+    tickets = Ticket.objects.filter(user__in=followed_users)
+    reviews = Review.objects.filter(user__in=followed_users)
     tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
-
+    reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
     posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
-
     context = {"posts": posts}
-
+    print(posts)
     return render(request, "reviews/feed.html", context)
 
 

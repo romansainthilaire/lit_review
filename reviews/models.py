@@ -13,7 +13,7 @@ class Ticket(models.Model):
 
 class Review(models.Model):
 
-    RATING_CHOICES = ((0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"))
+    RATING_CHOICES = ((1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"))
 
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)

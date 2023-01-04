@@ -2,6 +2,10 @@ body {
     background-color: rgb(80, 80, 80);
 }
 
+.nobr {
+    white-space: nowrap;
+}
+
 #main-container {
     min-height: calc(100vh - 75px);
 }
@@ -38,4 +42,9 @@ a {
 a:hover {
     color: white;
     text-underline-offset: 3px;
+}
+
+.star {
+    width: 20px;
+    padding-bottom: 5px;
 }
