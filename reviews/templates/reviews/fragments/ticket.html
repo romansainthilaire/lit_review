@@ -1,0 +1,29 @@
+<div class="bg-dark rounded p-4 mb-4">
+    <div class="d-flex justify-content-between text-secondary">
+        {% if post.user == user %}
+        <small>Vous avez demandé une critique.</small>
+        {% else %}
+        <small>{{ post.user.username }} a demandé une critique.</small>
+        {% endif %}
+        <small class="ms-4">{{ post.time_created|date }} {{ post.time_created|time }}</small>
+    </div>
+    <h5 class="text-white mt-4">{{ post.title }}</h5>
+    {% if post.description %}
+    <p class="text-white"><small>{{ post.description }}</small></p>
+    {% endif %}
+    {% if post.image %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-8 col-sm-5 col-lg-4">
+            <img class="img-fluid" src="{{ post.image.url }}" alt="">
+        </div>
+    </div>
+    {% endif %}
+    {% if user != post.user %}
+    {% for review in post.review_set.all %}
+    {% empty %}
+    <p class="text-end mt-4 mb-0">
+        <a class="btn btn-sm btn-secondary" href="{% url 'create_review' post.id %}">Créer une critique</a>
+    </p>
+    {% endfor %}
+    {% endif %}
+</div>

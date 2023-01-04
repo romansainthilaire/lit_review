@@ -1,24 +1,34 @@
-from django.shortcuts import render, redirect
+from itertools import chain
+
+from django.db.models import CharField, Value
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import Http404
 
 from accounts.models import User
-from reviews.models import Ticket, Subscription
+from reviews.models import Ticket, Review, Subscription
 
-from reviews.forms import CreateTicketForm, SubscriptionForm
+from reviews.forms import CreateTicketForm, CreateReviewForm, SubscriptionForm
 
 
 @login_required
 def feed(request):
+
     followed_users = []
     for subscription in Subscription.objects.filter(user=request.user):
         followed_users.append(subscription.followed_user)
-    tickets = []
-    for ticket in Ticket.objects.all().order_by("-time_created"):
-        if ticket.user in followed_users or ticket.user == request.user:
-            tickets.append(ticket)
-    context = {"tickets": tickets}
+
+    reviews = Review.objects.all()  # get only reveiws if review.user in followed_user or if review.user == request.user
+    reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
+
+    tickets = Ticket.objects.all()  # get only tickets if ticket.user in followed_user or if ticket.user == request.user
+    tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
+
+    posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+
+    context = {"posts": posts}
+
     return render(request, "reviews/feed.html", context)
 
 
@@ -36,6 +46,22 @@ def create_ticket(request):
             return redirect("feed")
     context = {"form": form}
     return render(request, "reviews/create_ticket_form.html", context)
+
+
+@login_required
+def create_review(request, ticket_id):
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    form = CreateReviewForm()
+    if request.method == "POST":
+        form = CreateReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect("feed")
+    context = {"form": form, "ticket": ticket}
+    return render(request, "reviews/create_review_form.html", context)
 
 
 @login_required
@@ -67,10 +93,7 @@ def subscriptions(request):
 
 @login_required
 def unsubscribe(request, followed_user_id):
-    try:
-        followed_user = User.objects.get(pk=followed_user_id)
-    except User.DoesNotExist:
-        raise Http404
+    followed_user = get_object_or_404(User, pk=followed_user_id)
     try:
         subscription = Subscription.objects.get(user=request.user, followed_user=followed_user)
     except Subscription.DoesNotExist:
