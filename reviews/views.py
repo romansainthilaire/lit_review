@@ -1,6 +1,6 @@
 from itertools import chain
 
-from django.db.models import CharField, Value
+from django.db.models import CharField, Value, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -18,7 +18,7 @@ def feed(request):
     for subscription in Subscription.objects.filter(user=request.user):
         followed_users.append(subscription.followed_user)
     tickets = Ticket.objects.filter(user__in=followed_users)
-    reviews = Review.objects.filter(user__in=followed_users)
+    reviews = Review.objects.filter(Q(user__in=followed_users) | Q(ticket__user=request.user))
     tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
     reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
     posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)

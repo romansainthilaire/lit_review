@@ -5,7 +5,7 @@
         {% else %}
         <small>{{ post.user.username }} a publié une critique.</small>
         {% endif %}
-        <small class="ms-4">{{ post.ticket.time_created|date }} {{ post.ticket.time_created|time }}</small>
+        <small class="ms-4">{{ post.time_created|date }} {{ post.time_created|time }}</small>
     </div>
     <h5 class="text-white mt-3">
         {{ post.headline }} -
