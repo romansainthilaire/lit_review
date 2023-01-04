@@ -16,7 +16,7 @@ class Review(models.Model):
     RATING_CHOICES = ((1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"))
 
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
+    ticket = models.OneToOneField(to=Ticket, on_delete=models.CASCADE, related_name="review")
     headline = models.CharField(max_length=128)
     rating = models.SmallIntegerField(choices=RATING_CHOICES)
     body = models.TextField(max_length=8192, blank=True)

@@ -23,7 +23,6 @@ def feed(request):
     reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
     posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
     context = {"posts": posts}
-    print(posts)
     return render(request, "reviews/feed.html", context)
 
 

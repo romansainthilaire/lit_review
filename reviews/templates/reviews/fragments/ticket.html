@@ -19,11 +19,8 @@
     </div>
     {% endif %}
     {% if user != post.user %}
-    {% for review in post.review_set.all %}
-    {% empty %}
     <p class="text-end mt-4 mb-0">
         <a class="btn btn-sm btn-secondary" href="{% url 'create_review' post.id %}">Créer une critique</a>
     </p>
-    {% endfor %}
     {% endif %}
 </div>

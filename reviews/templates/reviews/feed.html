@@ -14,7 +14,7 @@
         </div>
 
         {% for post in posts %}
-        {% if post.content_type == "TICKET" %}
+        {% if post.content_type == "TICKET" and not post.review %}
         {% include "reviews/fragments/ticket.html" %}
         {% elif post.content_type == "REVIEW" %}
         {% include "reviews/fragments/review.html" %}
