@@ -5,11 +5,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import Http404
+from django.core.exceptions import PermissionDenied
 
 from accounts.models import User
 from reviews.models import Ticket, Review, Subscription
 
-from reviews.forms import CreateTicketForm, CreateReviewForm, SubscriptionForm
+from reviews.forms import CreateTicketForm, UpdateTicketForm, CreateReviewForm, SubscriptionForm
 
 
 @login_required
@@ -50,7 +51,22 @@ def create_ticket(request):
             ticket.save()
             return redirect("feed")
     context = {"ticket_form": ticket_form}
-    return render(request, "reviews/create_ticket_form.html", context)
+    return render(request, "reviews/ticket_form.html", context)
+
+
+@login_required
+def update_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    if request.user != ticket.user:
+        raise PermissionDenied()
+    ticket_form = UpdateTicketForm(instance=ticket)
+    if request.method == "POST":
+        ticket_form = UpdateTicketForm(request.POST, request.FILES, instance=ticket)
+        if ticket_form.is_valid():
+            ticket.save()
+            return redirect("posts")
+    context = {"ticket_form": ticket_form, "ticket": ticket}
+    return render(request, "reviews/ticket_form.html", context)
 
 
 @login_required
@@ -66,7 +82,7 @@ def create_review(request, ticket_id):
             review.save()
             return redirect("feed")
     context = {"review_form": review_form, "ticket": ticket}
-    return render(request, "reviews/create_review_form.html", context)
+    return render(request, "reviews/review_form.html", context)
 
 
 @login_required
@@ -88,7 +104,7 @@ def create_ticket_and_review(request):
             review.save()
             return redirect("feed")
     context = {"ticket_form": ticket_form, "review_form": review_form}
-    return render(request, "reviews/create_ticket_and_review_form.html", context)
+    return render(request, "reviews/ticket_and_review_form.html", context)
 
 
 @login_required

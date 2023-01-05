@@ -1,20 +1,26 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
 
-{% block title %}LITReview | Nouveau ticket{% endblock title %}
+{% block title %}
+LITReview | {% if ticket %}Modification d'un ticket{% else %}Nouveau ticket{% endif %}
+{% endblock title %}
 
 {% block content %}
 
 <div class="row justify-content-center">
 
     <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-        <h3 class="text-center text-white mb-4">Nouveau ticket</h3>
+        <h3 class="text-center text-white mb-4">
+            {% if ticket %}Modification d'un ticket{% else %}Nouveau ticket{% endif %}
+        </h3>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form ticket_form bound_css_class="" %}
             <div class="text-end">
                 <a class="btn btn-secondary mt-4 me-3" href="{% url 'feed' %}">Retourner</a>
-                <button class="btn btn-secondary mt-4" type="submit">Créer</button>
+                <button class="btn btn-secondary mt-4" type="submit">
+                    {% if ticket %}Enregistrer{% else %}Créer{% endif %}
+                </button>
             </div>
         </form>
     </div>

@@ -28,6 +28,8 @@ class UpdateTicketForm(CreateTicketForm):
 
     def __init__(self, *args, **kwargs):
         super(CreateTicketForm, self).__init__(*args, **kwargs)
+        self.fields["title"].widget.attrs["placeholder"] = ""
+        self.fields["description"].widget.attrs["placeholder"] = ""
 
 
 class CreateReviewForm(forms.ModelForm):
