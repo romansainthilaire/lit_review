@@ -6,11 +6,19 @@
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body fw-bold mt-3">
+                {% if post.content_type == "TICKET" %}
                 <h5>{{ post.title }}</h5>
+                {% elif post.content_type == "REVIEW" %}
+                <h5>{{ post.ticket.title }}</h5>
+                {% endif %}
                 <p class="mt-3 text-white fw-light">Êtes vous sûr de vouloir supprimer ce ticket ?</p>
             </div>
             <div class="modal-footer">
+                {% if post.content_type == "TICKET" %}
                 <a class="btn btn-danger mt-3"  href="{% url 'delete_ticket' post.id %}">Supprimer</a>
+                {% elif post.content_type == "REVIEW" %}
+                <a class="btn btn-danger mt-3"  href="{% url 'delete_ticket' post.ticket.id %}">Supprimer</a>
+                {% endif %}
             </div>
         </div>
     </div>

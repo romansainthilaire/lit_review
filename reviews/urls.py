@@ -13,6 +13,7 @@ urlpatterns = [
 
     path("critique/nouvelle/<int:ticket_id>/", views.create_review, name="create_review"),
     path("critique/<int:review_id>/modifier/", views.update_review, name="update_review"),
+    path("critique/<int:review_id>/supprimer/", views.delete_review, name="delete_review"),
 
     path("critique/nouvelle/", views.create_ticket_and_review, name="create_ticket_and_review"),
 

@@ -15,7 +15,7 @@
     {% if post.user == user %}
     <p class="text-end mt-4 mb-0">
         <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_review' post.id %}">Modifier</a>
-        <a class="btn btn-sm btn-danger" href="">Supprimer</a>
+        <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete-review-modal">Supprimer</a>
     </p>
     {% endif %}
 
@@ -43,7 +43,10 @@
     {% if post.ticket.user == user %}
     <p class="text-end mt-4 mb-0">
         <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_ticket' post.ticket.id %}">Modifier</a>
-        <a class="btn btn-sm btn-danger" href="">Supprimer</a>
+        <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete-ticket-modal">Supprimer</a>
     </p>
     {% endif %}
 </div>
+
+{% include "reviews/fragments/delete_ticket_modal.html" %}
+{% include "reviews/fragments/delete_review_modal.html" %}
