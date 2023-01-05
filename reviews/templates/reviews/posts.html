@@ -8,11 +8,13 @@
 <div class="row justify-content-center">
     <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
 
+        <h2 class="text-white text-center mb-5">Vos posts</h2>
+
         {% for post in posts %}
         {% if post.content_type == "TICKET" and not post.review %}
-        {% include "reviews/fragments/ticket.html" %}
+        {% include "reviews/fragments/posts/ticket.html" %}
         {% elif post.content_type == "REVIEW" %}
-        {% include "reviews/fragments/review.html" %}
+        {% include "reviews/fragments/posts/review.html" %}
         {% endif %}
         {% endfor %}
         

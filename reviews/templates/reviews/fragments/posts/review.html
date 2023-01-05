@@ -11,10 +11,16 @@
         {{ post.headline }} -
         <span class="nobr">{% include "reviews/fragments/star_rating.html" %}</span>
     </h5>
-    
-    <p class="text-white"><small>{{ post.body }}</small>
+    <p class="text-white"><small>{{ post.body }}</small></p>
+    {% if post.user == user %}
+    <p class="text-end mt-4 mb-0">
+        <a class="btn btn-sm btn-secondary me-3" href="">Modifier</a>
+        <a class="btn btn-sm btn-danger" href="">Supprimer</a>
     </p>
+    {% endif %}
+
     <hr class="text-white my-4">
+
     <div class="d-flex justify-content-between text-secondary">
         {% if post.ticket.user == user %}
         <small>Ticket - Vous</small>
@@ -33,5 +39,11 @@
             <img class="img-fluid" src="{{ post.ticket.image.url }}" alt="">
         </div>
     </div>
+    {% endif %}
+    {% if post.ticket.user == user %}
+    <p class="text-end mt-4 mb-0">
+        <a class="btn btn-sm btn-secondary me-3" href="">Modifier</a>
+        <a class="btn btn-sm btn-danger" href="">Supprimer</a>
+    </p>
     {% endif %}
 </div>
