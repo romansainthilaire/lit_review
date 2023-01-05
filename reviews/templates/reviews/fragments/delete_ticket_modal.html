@@ -1,0 +1,17 @@
+<div class="modal fade" id="delete-ticket-modal">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-secondary">
+            <div class="modal-header">
+                <h4 class="text-secondary text-white">Confirmation de suppression</h4>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body fw-bold mt-3">
+                <h5>{{ post.title }}</h5>
+                <p class="mt-3 text-white fw-light">Êtes vous sûr de vouloir supprimer ce ticket ?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger mt-3"  href="{% url 'delete_ticket' post.id %}">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>

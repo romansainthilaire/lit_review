@@ -72,6 +72,15 @@ def update_ticket(request, ticket_id):
 
 
 @login_required
+def delete_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
+    if request.user != ticket.user:
+        raise PermissionDenied()
+    ticket.delete()
+    return redirect("posts")
+
+
+@login_required
 def create_review(request, ticket_id):
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     review_form = CreateReviewForm()
