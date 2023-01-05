@@ -9,3 +9,5 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(User, UserAdmin)
+
+admin.site.site_header = "LITReview"
