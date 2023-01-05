@@ -21,6 +21,15 @@ class CreateTicketForm(forms.ModelForm):
         self.fields["description"].widget.attrs["placeholder"] = ""
 
 
+class UpdateTicketForm(CreateTicketForm):
+
+    class Meta(CreateTicketForm.Meta):
+        pass
+
+    def __init__(self, *args, **kwargs):
+        super(CreateTicketForm, self).__init__(*args, **kwargs)
+
+
 class CreateReviewForm(forms.ModelForm):
 
     class Meta:

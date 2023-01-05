@@ -28,7 +28,7 @@
         </div>
         <form method="POST">
             {% csrf_token %}
-            {% bootstrap_form form bound_css_class="" %}
+            {% bootstrap_form review_form bound_css_class="" %}
             <div class="text-end">
                 <a class="btn btn-secondary mt-4 me-3" href="{% url 'feed' %}">Retourner</a>
                 <button class="btn btn-secondary mt-4" type="submit">Créer</button>

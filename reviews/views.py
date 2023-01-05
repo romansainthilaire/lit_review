@@ -39,33 +39,33 @@ def posts(request):
 
 @login_required
 def create_ticket(request):
-    form = CreateTicketForm()
+    ticket_form = CreateTicketForm()
     if request.method == "POST":
-        form = CreateTicketForm(request.POST, request.FILES)
-        if form.is_valid():
-            ticket = form.save(commit=False)
+        ticket_form = CreateTicketForm(request.POST, request.FILES)
+        if ticket_form.is_valid():
+            ticket = ticket_form.save(commit=False)
             ticket.user = request.user
             if "image" in request.FILES:
                 ticket.image = request.FILES["image"]
             ticket.save()
             return redirect("feed")
-    context = {"form": form}
+    context = {"ticket_form": ticket_form}
     return render(request, "reviews/create_ticket_form.html", context)
 
 
 @login_required
 def create_review(request, ticket_id):
     ticket = get_object_or_404(Ticket, pk=ticket_id)
-    form = CreateReviewForm()
+    review_form = CreateReviewForm()
     if request.method == "POST":
-        form = CreateReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
+        review_form = CreateReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
             review.user = request.user
             review.ticket = ticket
             review.save()
             return redirect("feed")
-    context = {"form": form, "ticket": ticket}
+    context = {"review_form": review_form, "ticket": ticket}
     return render(request, "reviews/create_review_form.html", context)
 
 
