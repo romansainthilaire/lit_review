@@ -9,7 +9,7 @@ class CreateTicketForm(forms.ModelForm):
         model = Ticket
         fields = ["title", "description", "image"]
         labels = {
-            "title": "Titre",
+            "title": "Titre du livre",
             "description": "Description",
             "image": "Image de couverture"
             }
@@ -27,7 +27,7 @@ class CreateReviewForm(forms.ModelForm):
         model = Review
         fields = ["headline", "rating", "body"]
         labels = {
-            "headline": "Titre",
+            "headline": "Titre de la critique",
             "rating": "Note",
             "body": "Commentaire"
             }

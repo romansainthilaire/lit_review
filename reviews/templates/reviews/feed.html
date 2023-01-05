@@ -10,7 +10,7 @@
 
         <div class="d-flex justify-content-center mb-5">
             <a href="{% url 'create_ticket' %}" class="btn btn-secondary me-4">Demander une critique</a>
-            <a href="" class="btn btn-secondary">Créer une critique</a>
+            <a href="{% url 'create_ticket_and_review' %}" class="btn btn-secondary">Créer une critique</a>
         </div>
 
         {% for post in posts %}

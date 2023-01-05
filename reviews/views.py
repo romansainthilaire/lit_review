@@ -59,6 +59,28 @@ def create_review(request, ticket_id):
 
 
 @login_required
+def create_ticket_and_review(request):
+    ticket_form = CreateTicketForm()
+    review_form = CreateReviewForm()
+    if request.method == "POST":
+        ticket_form = CreateTicketForm(request.POST, request.FILES)
+        review_form = CreateReviewForm(request.POST)
+        if ticket_form.is_valid() and review_form.is_valid():
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            if "image" in request.FILES:
+                ticket.image = request.FILES["image"]
+            ticket.save()
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect("feed")
+    context = {"ticket_form": ticket_form, "review_form": review_form}
+    return render(request, "reviews/create_ticket_and_review_form.html", context)
+
+
+@login_required
 def subscriptions(request):
     form = SubscriptionForm()
     users = User.objects.all().order_by("username")
