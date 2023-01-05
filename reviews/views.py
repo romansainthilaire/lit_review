@@ -10,7 +10,11 @@ from django.core.exceptions import PermissionDenied
 from accounts.models import User
 from reviews.models import Ticket, Review, Subscription
 
-from reviews.forms import CreateTicketForm, UpdateTicketForm, CreateReviewForm, SubscriptionForm
+from reviews.forms import (
+    CreateTicketForm, UpdateTicketForm,
+    CreateReviewForm, UpdateReviewForm,
+    SubscriptionForm
+    )
 
 
 @login_required
@@ -46,8 +50,6 @@ def create_ticket(request):
         if ticket_form.is_valid():
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
-            if "image" in request.FILES:
-                ticket.image = request.FILES["image"]
             ticket.save()
             return redirect("feed")
     context = {"ticket_form": ticket_form}
@@ -86,6 +88,22 @@ def create_review(request, ticket_id):
 
 
 @login_required
+def update_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    ticket = Ticket.objects.get(pk=review.ticket.pk)
+    if request.user != review.user:
+        raise PermissionDenied()
+    review_form = UpdateReviewForm(instance=review)
+    if request.method == "POST":
+        review_form = UpdateReviewForm(request.POST, request.FILES, instance=review)
+        if review_form.is_valid():
+            review.save()
+            return redirect("posts")
+    context = {"review_form": review_form, "ticket": ticket, "review": review}
+    return render(request, "reviews/review_form.html", context)
+
+
+@login_required
 def create_ticket_and_review(request):
     ticket_form = CreateTicketForm()
     review_form = CreateReviewForm()
@@ -95,8 +113,6 @@ def create_ticket_and_review(request):
         if ticket_form.is_valid() and review_form.is_valid():
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
-            if "image" in request.FILES:
-                ticket.image = request.FILES["image"]
             ticket.save()
             review = review_form.save(commit=False)
             review.user = request.user

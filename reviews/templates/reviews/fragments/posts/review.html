@@ -14,7 +14,7 @@
     <p class="text-white"><small>{{ post.body }}</small></p>
     {% if post.user == user %}
     <p class="text-end mt-4 mb-0">
-        <a class="btn btn-sm btn-secondary me-3" href="">Modifier</a>
+        <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_review' post.id %}">Modifier</a>
         <a class="btn btn-sm btn-danger" href="">Supprimer</a>
     </p>
     {% endif %}
@@ -42,7 +42,7 @@
     {% endif %}
     {% if post.ticket.user == user %}
     <p class="text-end mt-4 mb-0">
-        <a class="btn btn-sm btn-secondary me-3" href="">Modifier</a>
+        <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_ticket' post.ticket.id %}">Modifier</a>
         <a class="btn btn-sm btn-danger" href="">Supprimer</a>
     </p>
     {% endif %}

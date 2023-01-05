@@ -23,9 +23,6 @@ class CreateTicketForm(forms.ModelForm):
 
 class UpdateTicketForm(CreateTicketForm):
 
-    class Meta(CreateTicketForm.Meta):
-        pass
-
     def __init__(self, *args, **kwargs):
         super(CreateTicketForm, self).__init__(*args, **kwargs)
         self.fields["title"].widget.attrs["placeholder"] = ""
@@ -43,6 +40,14 @@ class CreateReviewForm(forms.ModelForm):
             "body": "Commentaire"
             }
         widgets = {"body": forms.Textarea(attrs={"rows": "7"})}
+
+    def __init__(self, *args, **kwargs):
+        super(CreateReviewForm, self).__init__(*args, **kwargs)
+        self.fields["headline"].widget.attrs["placeholder"] = ""
+        self.fields["body"].widget.attrs["placeholder"] = ""
+
+
+class UpdateReviewForm(CreateReviewForm):
 
     def __init__(self, *args, **kwargs):
         super(CreateReviewForm, self).__init__(*args, **kwargs)
