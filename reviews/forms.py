@@ -13,7 +13,7 @@ class CreateTicketForm(forms.ModelForm):
             "description": "Description",
             "image": "Image de couverture"
             }
-        widgets = {"description": forms.Textarea(attrs={"rows": "7"})}
+        widgets = {"description": forms.Textarea(attrs={"rows": "6"})}
 
     def __init__(self, *args, **kwargs):
         super(CreateTicketForm, self).__init__(*args, **kwargs)
@@ -39,7 +39,7 @@ class CreateReviewForm(forms.ModelForm):
             "rating": "Note",
             "body": "Commentaire"
             }
-        widgets = {"body": forms.Textarea(attrs={"rows": "7"})}
+        widgets = {"body": forms.Textarea(attrs={"rows": "6"})}
 
     def __init__(self, *args, **kwargs):
         super(CreateReviewForm, self).__init__(*args, **kwargs)

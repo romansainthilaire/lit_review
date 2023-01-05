@@ -52,3 +52,12 @@ a:hover {
 .invalid-feedback {
     color: rgb(255, 150, 150)
 }
+
+.form-control, .form-select {
+    border: none;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: none;
+    border: none;
+}
