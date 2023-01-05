@@ -48,3 +48,7 @@ a:hover {
     width: 20px;
     padding-bottom: 5px;
 }
+
+.invalid-feedback {
+    color: rgb(255, 150, 150)
+}
