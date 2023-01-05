@@ -10,6 +10,9 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="book_covers")
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Review(models.Model):
 
@@ -21,6 +24,9 @@ class Review(models.Model):
     rating = models.SmallIntegerField(choices=RATING_CHOICES)
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.headline} - {self.rating}/5"
 
 
 class Subscription(models.Model):
