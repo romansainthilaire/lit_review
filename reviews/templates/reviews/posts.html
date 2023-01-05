@@ -1,17 +1,12 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
 
-{% block title %}LITReview | Flux{% endblock title %}
+{% block title %}LITReview | Posts{% endblock title %}
 
 {% block content %}
 
 <div class="row justify-content-center">
     <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-
-        <div class="d-flex justify-content-center mb-5">
-            <a href="{% url 'create_ticket' %}" class="btn btn-secondary me-4">Demander une critique</a>
-            <a href="{% url 'create_ticket_and_review' %}" class="btn btn-secondary">Créer une critique</a>
-        </div>
 
         {% for post in posts %}
         {% if post.content_type == "TICKET" and not post.review %}

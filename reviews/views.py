@@ -27,6 +27,17 @@ def feed(request):
 
 
 @login_required
+def posts(request):
+    tickets = Ticket.objects.filter(user=request.user)
+    reviews = Review.objects.filter(Q(user=request.user) | Q(ticket__user=request.user))
+    tickets = tickets.annotate(content_type=Value("TICKET", CharField()))
+    reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
+    posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+    context = {"posts": posts}
+    return render(request, "reviews/posts.html", context)
+
+
+@login_required
 def create_ticket(request):
     form = CreateTicketForm()
     if request.method == "POST":
