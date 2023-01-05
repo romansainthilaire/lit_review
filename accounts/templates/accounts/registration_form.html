@@ -12,7 +12,7 @@
         <form method="POST">
             {% csrf_token %}
             {% bootstrap_form form bound_css_class="" %}
-            <div class="text-end">
+            <div class="text-center text-sm-end">
                 <a class="btn btn-secondary mt-4 me-3" href="{% url 'login' %}">Retourner</a>
                 <button class="btn btn-secondary mt-4" type="submit">S'inscrire</button>
             </div>
