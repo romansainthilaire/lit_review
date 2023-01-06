@@ -10,9 +10,11 @@ LITReview | {% if review %}Modification d'une critique{% else %}Nouvelle critiqu
 <div class="row justify-content-center">
 
     <div class="col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+
         <h3 class="text-center text-white mb-5">
             {% if review %}Modification d'une critique{% else %}Nouvelle critique{% endif %}
         </h3>
+
         <div class="bg-dark rounded p-4 mb-4">
             <div class="d-flex justify-content-between text-secondary">
                 {% if ticket.user == user %}
@@ -32,6 +34,7 @@ LITReview | {% if review %}Modification d'une critique{% else %}Nouvelle critiqu
             </div>
             {% endif %}
         </div>
+
         <form method="POST">
             {% csrf_token %}
             {% bootstrap_form review_form bound_css_class="" %}
@@ -46,6 +49,7 @@ LITReview | {% if review %}Modification d'une critique{% else %}Nouvelle critiqu
                 </button>
             </div>
         </form>
+        
     </div>
 
 </div>
