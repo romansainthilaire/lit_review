@@ -31,13 +31,11 @@
     </div>
     <h5 class="text-white mt-3">{{ post.ticket.title }}</h5>
     {% if post.ticket.description %}
-    <p class="text-white"><small>{{ post.ticket.description }}</small></p>
+    <p><small class="text-white">{{ post.ticket.description|linebreaks }}</small></p>
     {% endif %}
     {% if post.ticket.image %}
-    <div class="row justify-content-center mt-4">
-        <div class="col-8 col-sm-5 col-lg-4">
-            <img class="img-fluid" src="{{ post.ticket.image.url }}" alt="">
-        </div>
+    <div class="text-center mt-4">
+        <img class="img-fluid book-cover" src="{{ post.ticket.image.url }}" alt="">
     </div>
     {% endif %}
     {% if post.ticket.user == user %}
