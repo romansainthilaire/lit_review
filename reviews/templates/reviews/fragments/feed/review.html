@@ -1,4 +1,5 @@
 <div class="bg-dark rounded p-4 mb-4">
+
     <div class="d-flex justify-content-between text-secondary">
         {% if post.user == user %}
         <small>Vous avez publié une critique.</small>
@@ -34,4 +35,5 @@
         <img class="img-fluid book-cover" src="{{ post.ticket.image.url }}" alt="">
     </div>
     {% endif %}
+    
 </div>
