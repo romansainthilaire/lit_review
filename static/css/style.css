@@ -44,6 +44,11 @@ a:hover {
     text-underline-offset: 3px;
 }
 
+.book-cover {
+    height: 250px;
+    width: 180px;
+}
+
 .star {
     width: 20px;
     padding-bottom: 5px;

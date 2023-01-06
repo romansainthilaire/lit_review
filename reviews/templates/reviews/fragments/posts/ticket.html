@@ -9,16 +9,14 @@
     </div>
     <h5 class="text-white mt-3">{{ post.title }}</h5>
     {% if post.description %}
-    <p class="text-white"><small>{{ post.description }}</small></p>
+    <p><small class="text-white">{{ post.description|linebreaks }}</small></p>
     {% endif %}
     {% if post.image %}
-    <div class="row justify-content-center mt-4">
-        <div class="col-8 col-sm-5 col-lg-4">
-            <img class="img-fluid" src="{{ post.image.url }}" alt="">
-        </div>
+    <div class="text-center mt-4">
+        <img class="img-fluid book-cover" src="{{ post.image.url }}" alt="">
     </div>
     {% endif %}
-    <p class="text-end mt-4 mb-0">
+    <p class="text-center text-sm-end mt-4 mb-0">
         <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_ticket' post.id %}">Modifier</a>
         <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete-ticket-modal">Supprimer</a>
     </p>
