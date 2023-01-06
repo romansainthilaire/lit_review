@@ -39,7 +39,7 @@
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand me-5" href="">
-                    <img id="logo" src="{% static 'img/logo.png' %}" alt="logo">
+                    <img id="litreview-logo" src="{% static 'img/logos/litreview-logo.png' %}" alt="logo">
                     LITReview
                 </a>
                 {% if user.is_authenticated %}
@@ -72,6 +72,11 @@
 
     <footer class="bg-dark mt-5">
         <p class="text-white text-center pt-4">&copy; <span>{% now "Y" %}</span> LITReview</p>
+        <p class="text-center">
+            <a href="https://github.com/romansainthilaire" target="_blank">
+                <img id="github-logo" src="{% static 'img/logos/github-logo.png' %}" alt="">
+            </a>
+        </p>
     </footer>
 
 </body>

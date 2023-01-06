@@ -7,15 +7,27 @@ body {
 }
 
 #main-container {
-    min-height: calc(100vh - 75px);
+    min-height: calc(100vh - 140px);
 }
 
 footer {
-    height: 75px;
+    height: 140px;
 }
 
-#logo {
-    max-width: 80px;
+#litreview-logo {
+    max-height: 80px;
+}
+
+#github-logo {
+    max-height: 50px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#github-logo:hover {
+    max-height: 54px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .nav-link:hover {
