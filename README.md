@@ -2,7 +2,7 @@
 
 Ce projet a été réalisé dans le cadre de la formation OpenClassrooms *Développeur d'application - Python*.
 
-→ Développement d'une application Web avec **Django**
+→ Développement d'une application Web avec **Django**.
 
 ## Présentation de l'application
 
@@ -21,4 +21,4 @@ Les utilisateurs ont la possibilité de :
 - se rendre à l'adresse : http://127.0.0.1:8000/
 
 <ins>Note :</ins>  
-Pour faciliter la découverte de l'application, la base de données db.slite3 est incluse dans le dépôt. Plusieurs comptes ont déjà été créés avec toujours le même mot de passe : **mdptest123**. L'utilisateur admin est **Roman**.
+Pour faciliter la découverte de l'application, la base de données db.sqlite3 est incluse dans le dépôt. Plusieurs comptes ont déjà été créés avec toujours le même mot de passe : **mdptest123**. L'utilisateur admin est **Roman**.
