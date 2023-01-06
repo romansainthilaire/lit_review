@@ -15,29 +15,27 @@ LITReview | {% if review %}Modification d'une critique{% else %}Nouvelle critiqu
         </h3>
         <div class="bg-dark rounded p-4 mb-4">
             <div class="d-flex justify-content-between text-secondary">
-                {% if ticket.user == request.user %}
+                {% if ticket.user == user %}
                 <small>Ticket - Vous</small>
                 {% else %}
                 <small>Ticket - {{ ticket.user.username }}</small>
                 {% endif %}
                 <small class="ms-4">{{ ticket.time_created|date }} {{ ticket.time_created|time }}</small>
             </div>
-            <h5 class="text-white mt-4">{{ ticket.title }}</h5>
+            <h5 class="text-white mt-3">{{ ticket.title }}</h5>
             {% if ticket.description %}
-            <p class="text-white"><small>{{ ticket.description }}</small></p>
+            <p><small class="text-white">{{ ticket.description|linebreaks }}</small></p>
             {% endif %}
             {% if ticket.image %}
-            <div class="row justify-content-center mt-4">
-                <div class="col-8 col-sm-5 col-lg-4">
-                    <img class="img-fluid" src="{{ ticket.image.url }}" alt="">
-                </div>
+            <div class="text-center mt-4">
+                <img class="img-fluid book-cover" src="{{ ticket.image.url }}" alt="">
             </div>
             {% endif %}
         </div>
         <form method="POST">
             {% csrf_token %}
             {% bootstrap_form review_form bound_css_class="" %}
-            <div class="text-end">
+            <div class="text-center text-sm-end">
                 {% if review %}
                 <a class="btn btn-secondary mt-4 me-3" href="{% url 'posts' %}">Retourner</a>
                 {% else %}

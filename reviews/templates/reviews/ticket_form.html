@@ -16,7 +16,7 @@ LITReview | {% if ticket %}Modification d'un ticket{% else %}Nouveau ticket{% en
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form ticket_form bound_css_class="" %}
-            <div class="text-end">
+            <div class="text-center text-sm-end">
                 {% if ticket %}
                 <a class="btn btn-secondary mt-4 me-3" href="{% url 'posts' %}">Retourner</a>
                 {% else %}
