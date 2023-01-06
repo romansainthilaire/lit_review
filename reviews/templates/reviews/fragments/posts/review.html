@@ -11,9 +11,11 @@
         {{ post.headline }} -
         <span class="nobr">{% include "reviews/fragments/star_rating.html" %}</span>
     </h5>
-    <p class="text-white"><small>{{ post.body }}</small></p>
+    {% if post.body %}
+    <p><small class="text-white">{{ post.body|linebreaks }}</small></p>
+    {% endif %}
     {% if post.user == user %}
-    <p class="text-end mt-4 mb-0">
+    <p class="text-center text-sm-end mt-4 mb-0">
         <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_review' post.id %}">Modifier</a>
         <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete-review-modal">Supprimer</a>
     </p>
@@ -39,7 +41,7 @@
     </div>
     {% endif %}
     {% if post.ticket.user == user %}
-    <p class="text-end mt-4 mb-0">
+    <p class="text-center text-sm-end mt-4 mb-0">
         <a class="btn btn-sm btn-secondary me-3" href="{% url 'update_ticket' post.ticket.id %}">Modifier</a>
         <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete-ticket-modal">Supprimer</a>
     </p>

@@ -11,7 +11,9 @@
         {{ post.headline }} -
         <span class="nobr">{% include "reviews/fragments/star_rating.html" %}</span>
     </h5>
-    <p class="text-white"><small>{{ post.body }}</small></p>
+    {% if post.body %}
+    <p><small class="text-white">{{ post.body|linebreaks }}</small></p>
+    {% endif %}
 
     <hr class="text-white my-4">
     
