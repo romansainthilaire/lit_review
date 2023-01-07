@@ -6,6 +6,14 @@ body {
     white-space: nowrap;
 }
 
+.fs-7 {
+    font-size: 15px;
+}
+
+.text-light {
+    color: rgb(200, 200, 200) !important;
+}
+
 #main-container {
     min-height: calc(100vh - 140px);
 }

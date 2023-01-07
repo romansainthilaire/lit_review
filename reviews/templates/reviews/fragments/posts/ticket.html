@@ -9,7 +9,7 @@
     </div>
     <h5 class="text-white mt-3">{{ post.title }}</h5>
     {% if post.description %}
-    <p><small class="text-white">{{ post.description|linebreaks }}</small></p>
+    <div class="text-light fs-7 mt-3">{{ post.description|linebreaks }}</div>
     {% endif %}
     {% if post.image %}
     <div class="text-center mt-4">

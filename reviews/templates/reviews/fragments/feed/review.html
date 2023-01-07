@@ -13,7 +13,7 @@
         <span class="nobr">{% include "reviews/fragments/star_rating.html" %}</span>
     </h5>
     {% if post.body %}
-    <p><small class="text-white">{{ post.body|linebreaks }}</small></p>
+    <div class="text-light fs-7 mt-3">{{ post.body|linebreaks }}</div>
     {% endif %}
 
     <hr class="text-white my-4">
@@ -28,7 +28,7 @@
     </div>
     <h5 class="text-white mt-3">{{ post.ticket.title }}</h5>
     {% if post.ticket.description %}
-    <p><small class="text-white">{{ post.ticket.description|linebreaks }}</small></p>
+    <div class="text-light fs-7 mt-3">{{ post.ticket.description|linebreaks }}</div>
     {% endif %}
     {% if post.ticket.image %}
     <div class="text-center mt-4">
