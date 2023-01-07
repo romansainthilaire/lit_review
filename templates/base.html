@@ -38,10 +38,10 @@
     <div id="main-container">
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand me-5" href="">
+                <span class="navbar-brand me-5">
                     <img id="litreview-logo" src="{% static 'img/logos/litreview-logo.png' %}" alt="logo">
                     LITReview
-                </a>
+                </span>
                 {% if user.is_authenticated %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
                     <span class="navbar-toggler-icon"></span>
